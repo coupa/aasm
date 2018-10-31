@@ -1,4 +1,4 @@
-class AASM::SupportingClasses::Event
+class AASM2::SupportingClasses::Event
   attr_reader :name, :success, :options
 
   def initialize(name, options = {}, &block)
@@ -9,7 +9,7 @@ class AASM::SupportingClasses::Event
 
   def fire(obj, to_state=nil, *args)
     transitions = @transitions.select { |t| t.from == obj.aasm_current_state }
-    raise AASM::InvalidTransition, "Event '#{name}' cannot transition from '#{obj.aasm_current_state}'" if transitions.size == 0
+    raise AASM2::InvalidTransition, "Event '#{name}' cannot transition from '#{obj.aasm_current_state}'" if transitions.size == 0
 
     next_state = nil
     transitions.each do |transition|
@@ -103,7 +103,7 @@ class AASM::SupportingClasses::Event
 
   def transitions(trans_opts)
     Array(trans_opts[:from]).each do |s|
-      @transitions << AASM::SupportingClasses::StateTransition.new(trans_opts.merge({:from => s.to_sym}))
+      @transitions << AASM2::SupportingClasses::StateTransition.new(trans_opts.merge({:from => s.to_sym}))
     end
   end
 end

@@ -4,10 +4,10 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "aasm"
+    gem.name = "aasm2"
     gem.summary = %Q{State machine mixin for Ruby objects}
-    gem.description = %Q{AASM is a continuation of the acts as state machine rails plugin, built for plain Ruby objects.}
-    gem.homepage = "http://rubyist.github.com/aasm/"
+    gem.description = %Q{AASM2 is a continuation of the acts as state machine rails plugin, built for plain Ruby objects.}
+    gem.homepage = "https://github.com/dave4u90/aasm/tree/v2.2.0"
     gem.authors = ["Scott Barron", "Scott Petersen", "Travis Tilley"]
     gem.email = "scott@elitists.net, ttilley@gmail.com"
     gem.add_development_dependency "rspec"
@@ -95,7 +95,7 @@ begin
     end
 
     rdoc.rdoc_dir = 'rdoc'
-    rdoc.title = "aasm #{version}"
+    rdoc.title = "aasm2 #{version}"
     rdoc.rdoc_files.include('README*')
     rdoc.rdoc_files.include('lib/**/*.rb')
 
@@ -103,6 +103,6 @@ begin
     rdoc.template = 'direct'
   end
 rescue LoadError
-  puts "aasm makes use of the sdoc gem. Install it with: sudo gem install sdoc"
+  puts "aasm2 makes use of the sdoc gem. Install it with: sudo gem install sdoc"
 end
 

@@ -1,4 +1,4 @@
-class AASM::SupportingClasses::StateTransition
+class AASM2::SupportingClasses::StateTransition
   attr_reader :from, :to, :opts
   alias_method :options, :opts
 

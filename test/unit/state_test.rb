@@ -2,7 +2,7 @@ require 'test_helper'
 
 class StateTest < Test::Unit::TestCase
   def new_state(options={})
-    AASM::SupportingClasses::State.new(@name, @options.merge(options))
+    AASM2::SupportingClasses::State.new(@name, @options.merge(options))
   end
   
   context 'state' do

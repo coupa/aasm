@@ -4,7 +4,7 @@ class StateTransitionTest < Test::Unit::TestCase
   context 'state transition' do
     setup do
       @opts = {:from => 'foo', :to => 'bar', :guard => 'g'}
-      @st = AASM::SupportingClasses::StateTransition.new(@opts)
+      @st = AASM2::SupportingClasses::StateTransition.new(@opts)
     end
     
     should 'set from, to, and opts attr readers' do
@@ -40,13 +40,13 @@ class StateTransitionTest < Test::Unit::TestCase
     context 'when performing guard checks' do
       should 'return true if there is no guard' do
         opts = {:from => 'foo', :to => 'bar'}
-        st = AASM::SupportingClasses::StateTransition.new(opts)
+        st = AASM2::SupportingClasses::StateTransition.new(opts)
         assert st.perform(nil)
       end
       
       should 'call the method on the object if guard is a symbol' do
         opts = {:from => 'foo', :to => 'bar', :guard => :test_guard}
-        st = AASM::SupportingClasses::StateTransition.new(opts)
+        st = AASM2::SupportingClasses::StateTransition.new(opts)
 
         mock(obj = Object.new).test_guard
 
@@ -55,7 +55,7 @@ class StateTransitionTest < Test::Unit::TestCase
       
       should 'call the method on the object if guard is a string' do
         opts = {:from => 'foo', :to => 'bar', :guard => 'test_guard'}
-        st = AASM::SupportingClasses::StateTransition.new(opts)
+        st = AASM2::SupportingClasses::StateTransition.new(opts)
 
         mock(obj = Object.new).test_guard
 
@@ -64,7 +64,7 @@ class StateTransitionTest < Test::Unit::TestCase
       
       should 'call the proc passing the object if guard is a proc' do
         opts = {:from => 'foo', :to => 'bar', :guard => Proc.new {|o| o.test_guard}}
-        st = AASM::SupportingClasses::StateTransition.new(opts)
+        st = AASM2::SupportingClasses::StateTransition.new(opts)
 
         mock(obj = Object.new).test_guard
 

@@ -1,4 +1,4 @@
-class AASM::StateMachine
+class AASM2::StateMachine
   def self.[](*args)
     (@machines ||= {})[args]
   end
@@ -27,6 +27,6 @@ class AASM::StateMachine
   end
 
   def create_state(name, options)
-    @states << AASM::SupportingClasses::State.new(name, options) unless @states.include?(name)
+    @states << AASM2::SupportingClasses::State.new(name, options) unless @states.include?(name)
   end
 end

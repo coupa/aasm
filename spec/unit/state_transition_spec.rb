@@ -1,9 +1,9 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 
-describe AASM::SupportingClasses::StateTransition do
+describe AASM2::SupportingClasses::StateTransition do
   it 'should set from, to, and opts attr readers' do
     opts = {:from => 'foo', :to => 'bar', :guard => 'g'}
-    st = AASM::SupportingClasses::StateTransition.new(opts)
+    st = AASM2::SupportingClasses::StateTransition.new(opts)
 
     st.from.should == opts[:from]
     st.to.should == opts[:to]
@@ -12,7 +12,7 @@ describe AASM::SupportingClasses::StateTransition do
 
   it 'should pass equality check if from and to are the same' do
     opts = {:from => 'foo', :to => 'bar', :guard => 'g'}
-    st = AASM::SupportingClasses::StateTransition.new(opts)
+    st = AASM2::SupportingClasses::StateTransition.new(opts)
 
     obj = mock('object')
     obj.stub!(:from).and_return(opts[:from])
@@ -23,7 +23,7 @@ describe AASM::SupportingClasses::StateTransition do
 
   it 'should fail equality check if from are not the same' do
     opts = {:from => 'foo', :to => 'bar', :guard => 'g'}
-    st = AASM::SupportingClasses::StateTransition.new(opts)
+    st = AASM2::SupportingClasses::StateTransition.new(opts)
 
     obj = mock('object')
     obj.stub!(:from).and_return('blah')
@@ -34,7 +34,7 @@ describe AASM::SupportingClasses::StateTransition do
 
   it 'should fail equality check if to are not the same' do
     opts = {:from => 'foo', :to => 'bar', :guard => 'g'}
-    st = AASM::SupportingClasses::StateTransition.new(opts)
+    st = AASM2::SupportingClasses::StateTransition.new(opts)
 
     obj = mock('object')
     obj.stub!(:from).and_return(opts[:from])
@@ -44,17 +44,17 @@ describe AASM::SupportingClasses::StateTransition do
   end
 end
 
-describe AASM::SupportingClasses::StateTransition, '- when performing guard checks' do
+describe AASM2::SupportingClasses::StateTransition, '- when performing guard checks' do
   it 'should return true of there is no guard' do
     opts = {:from => 'foo', :to => 'bar'}
-    st = AASM::SupportingClasses::StateTransition.new(opts)
+    st = AASM2::SupportingClasses::StateTransition.new(opts)
 
     st.perform(nil).should be_true
   end
 
   it 'should call the method on the object if guard is a symbol' do
     opts = {:from => 'foo', :to => 'bar', :guard => :test}
-    st = AASM::SupportingClasses::StateTransition.new(opts)
+    st = AASM2::SupportingClasses::StateTransition.new(opts)
 
     obj = mock('object')
     obj.should_receive(:test)
@@ -64,7 +64,7 @@ describe AASM::SupportingClasses::StateTransition, '- when performing guard chec
 
   it 'should call the method on the object if guard is a string' do
     opts = {:from => 'foo', :to => 'bar', :guard => 'test'}
-    st = AASM::SupportingClasses::StateTransition.new(opts)
+    st = AASM2::SupportingClasses::StateTransition.new(opts)
 
     obj = mock('object')
     obj.should_receive(:test)
@@ -74,7 +74,7 @@ describe AASM::SupportingClasses::StateTransition, '- when performing guard chec
 
   it 'should call the proc passing the object if the guard is a proc' do
     opts = {:from => 'foo', :to => 'bar', :guard => Proc.new {|o| o.test}}
-    st = AASM::SupportingClasses::StateTransition.new(opts)
+    st = AASM2::SupportingClasses::StateTransition.new(opts)
 
     obj = mock('object')
     obj.should_receive(:test)

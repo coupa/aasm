@@ -1,7 +1,7 @@
-require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'aasm')
+require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'aasm2')
 
 class Conversation
-  include AASM
+  include AASM2
 
   aasm_initial_state :needs_attention
 

@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class AuthMachine
-  include AASM
+  include AASM2
 
   attr_accessor :activation_code, :activated_at, :deleted_at
 

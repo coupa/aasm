@@ -1,4 +1,4 @@
-module AASM
+module AASM2
   module Persistence
     module ActiveRecordPersistence
       # This method:
@@ -32,14 +32,14 @@ module AASM
       #   end
       #
       def self.included(base)
-        base.extend AASM::Persistence::ActiveRecordPersistence::ClassMethods
-        base.send(:include, AASM::Persistence::ActiveRecordPersistence::InstanceMethods)
-        base.send(:include, AASM::Persistence::ActiveRecordPersistence::ReadState) unless base.method_defined?(:aasm_read_state)
-        base.send(:include, AASM::Persistence::ActiveRecordPersistence::WriteState) unless base.method_defined?(:aasm_write_state)
-        base.send(:include, AASM::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence) unless base.method_defined?(:aasm_write_state_without_persistence)
+        base.extend AASM2::Persistence::ActiveRecordPersistence::ClassMethods
+        base.send(:include, AASM2::Persistence::ActiveRecordPersistence::InstanceMethods)
+        base.send(:include, AASM2::Persistence::ActiveRecordPersistence::ReadState) unless base.method_defined?(:aasm_read_state)
+        base.send(:include, AASM2::Persistence::ActiveRecordPersistence::WriteState) unless base.method_defined?(:aasm_write_state)
+        base.send(:include, AASM2::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence) unless base.method_defined?(:aasm_write_state_without_persistence)
 
         if base.respond_to?(:named_scope) || base.respond_to?(:scope)
-          base.extend(AASM::Persistence::ActiveRecordPersistence::NamedScopeMethods)
+          base.extend(AASM2::Persistence::ActiveRecordPersistence::NamedScopeMethods)
 
           base.class_eval do
             class << self
@@ -85,14 +85,14 @@ module AASM
         # This method is both a getter and a setter
         def aasm_column(column_name=nil)
           if column_name
-            AASM::StateMachine[self].config.column = column_name.to_sym
+            AASM2::StateMachine[self].config.column = column_name.to_sym
             # @aasm_column = column_name.to_sym
           else
-            AASM::StateMachine[self].config.column ||= :aasm_state
+            AASM2::StateMachine[self].config.column ||= :aasm_state
             # @aasm_column ||= :aasm_state
           end
           # @aasm_column
-          AASM::StateMachine[self].config.column
+          AASM2::StateMachine[self].config.column
         end
 
         def find_in_state(number, state, *args)

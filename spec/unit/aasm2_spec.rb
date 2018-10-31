@@ -1,7 +1,7 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 
 class Foo
-  include AASM
+  include AASM2
   aasm_initial_state :open
   aasm_state :open, :exit => :exit
   aasm_state :closed, :enter => :enter
@@ -28,12 +28,12 @@ class Foo
 end
 
 class FooTwo < Foo
-  include AASM
+  include AASM2
   aasm_state :foo
 end
 
 class Bar
-  include AASM
+  include AASM2
 
   aasm_state :read
   aasm_state :ended
@@ -47,7 +47,7 @@ class Baz < Bar
 end
 
 class Banker
-  include AASM
+  include AASM2
   aasm_initial_state  Proc.new { |banker| banker.rich? ? :retired : :selling_bad_mortgages }
   aasm_state          :retired
   aasm_state          :selling_bad_mortgages
@@ -58,7 +58,7 @@ class Banker
 end
 
 
-describe AASM, '- class level definitions' do
+describe AASM2, '- class level definitions' do
   it 'should define a class level aasm_initial_state() method on its including class' do
     Foo.should respond_to(:aasm_initial_state)
   end
@@ -86,7 +86,7 @@ describe AASM, '- class level definitions' do
 end
 
 
-describe AASM, '- subclassing' do
+describe AASM2, '- subclassing' do
   it 'should have the parent states' do
     Foo.aasm_states.each do |state|
       FooTwo.aasm_states.should include(state)
@@ -99,13 +99,13 @@ describe AASM, '- subclassing' do
 end
 
 
-describe AASM, '- aasm_states_for_select' do
+describe AASM2, '- aasm_states_for_select' do
   it "should return a select friendly array of states in the form of [['Friendly name', 'state_name']]" do
     Foo.aasm_states_for_select.should == [['Open', 'open'], ['Closed', 'closed']]
   end
 end
 
-describe AASM, '- instance level definitions' do
+describe AASM2, '- instance level definitions' do
   before(:each) do
     @foo = Foo.new
   end
@@ -119,7 +119,7 @@ describe AASM, '- instance level definitions' do
   end
 end
 
-describe AASM, '- initial states' do
+describe AASM2, '- initial states' do
   before(:each) do
     @foo = Foo.new
     @bar = Bar.new
@@ -147,7 +147,7 @@ describe AASM, '- initial states' do
   end
 end
 
-describe AASM, '- event firing with persistence' do
+describe AASM2, '- event firing with persistence' do
   it 'should fire the Event' do
     foo = Foo.new
 
@@ -215,7 +215,7 @@ describe AASM, '- event firing with persistence' do
   end
 end
 
-describe AASM, '- event firing without persistence' do
+describe AASM2, '- event firing without persistence' do
   it 'should fire the Event' do
     foo = Foo.new
 
@@ -242,7 +242,7 @@ describe AASM, '- event firing without persistence' do
   end
 end
 
-describe AASM, '- persistence' do
+describe AASM2, '- persistence' do
   it 'should read the state if it has not been set and aasm_read_state is defined' do
     foo = Foo.new
     def foo.aasm_read_state
@@ -254,7 +254,7 @@ describe AASM, '- persistence' do
   end
 end
 
-describe AASM, '- getting events for a state' do
+describe AASM2, '- getting events for a state' do
   it '#aasm_events_for_current_state should use current state' do
     foo = Foo.new
     foo.should_receive(:aasm_current_state)
@@ -269,7 +269,7 @@ describe AASM, '- getting events for a state' do
   end
 end
 
-describe AASM, '- event callbacks' do
+describe AASM2, '- event callbacks' do
   describe "with an error callback defined" do
     before do
       class Foo
@@ -349,7 +349,7 @@ describe AASM, '- event callbacks' do
   end
 end
 
-describe AASM, '- state actions' do
+describe AASM2, '- state actions' do
   it "should call enter when entering state" do
     foo = Foo.new
     foo.should_receive(:enter)
@@ -378,7 +378,7 @@ end
 
 
 class ChetanPatil
-  include AASM
+  include AASM2
   aasm_initial_state :sleeping
   aasm_state :sleeping
   aasm_state :showering

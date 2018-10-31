@@ -10,7 +10,7 @@ begin
   end
 
   class FooBar < ActiveRecord::Base
-    include AASM
+    include AASM2
 
     # Fake this column for testing purposes
     attr_accessor :aasm_state
@@ -27,25 +27,25 @@ begin
     def aasm_read_state
       "fi"
     end
-    include AASM
+    include AASM2
   end
 
   class Fo < ActiveRecord::Base
     def aasm_write_state(state)
       "fo"
     end
-    include AASM
+    include AASM2
   end
 
   class Fum < ActiveRecord::Base
     def aasm_write_state_without_persistence(state)
       "fum"
     end
-    include AASM
+    include AASM2
   end
 
   class June < ActiveRecord::Base
-    include AASM
+    include AASM2
     aasm_column :status
   end
 
@@ -53,7 +53,7 @@ begin
   end
 
   class Thief < ActiveRecord::Base
-    include AASM
+    include AASM2
     aasm_initial_state  Proc.new { |thief| thief.skilled ? :rich : :jailed }
     aasm_state          :rich
     aasm_state          :jailed
@@ -61,11 +61,11 @@ begin
   end
 
   describe "aasm model", :shared => true do
-    it "should include AASM::Persistence::ActiveRecordPersistence" do
-      @klass.included_modules.should be_include(AASM::Persistence::ActiveRecordPersistence)
+    it "should include AASM2::Persistence::ActiveRecordPersistence" do
+      @klass.included_modules.should be_include(AASM2::Persistence::ActiveRecordPersistence)
     end
-    it "should include AASM::Persistence::ActiveRecordPersistence::InstanceMethods" do
-      @klass.included_modules.should be_include(AASM::Persistence::ActiveRecordPersistence::InstanceMethods)
+    it "should include AASM2::Persistence::ActiveRecordPersistence::InstanceMethods" do
+      @klass.included_modules.should be_include(AASM2::Persistence::ActiveRecordPersistence::InstanceMethods)
     end
   end
 
@@ -74,14 +74,14 @@ begin
       @klass = FooBar
     end
     it_should_behave_like "aasm model"
-    it "should include AASM::Persistence::ActiveRecordPersistence::ReadState" do
-      @klass.included_modules.should be_include(AASM::Persistence::ActiveRecordPersistence::ReadState)
+    it "should include AASM2::Persistence::ActiveRecordPersistence::ReadState" do
+      @klass.included_modules.should be_include(AASM2::Persistence::ActiveRecordPersistence::ReadState)
     end
-    it "should include AASM::Persistence::ActiveRecordPersistence::WriteState" do
-      @klass.included_modules.should be_include(AASM::Persistence::ActiveRecordPersistence::WriteState)
+    it "should include AASM2::Persistence::ActiveRecordPersistence::WriteState" do
+      @klass.included_modules.should be_include(AASM2::Persistence::ActiveRecordPersistence::WriteState)
     end
-    it "should include AASM::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence" do
-      @klass.included_modules.should be_include(AASM::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence)
+    it "should include AASM2::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence" do
+      @klass.included_modules.should be_include(AASM2::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence)
     end
   end
 
@@ -90,14 +90,14 @@ begin
       @klass = Fi
     end
     it_should_behave_like "aasm model"
-    it "should not include AASM::Persistence::ActiveRecordPersistence::ReadState" do
-      @klass.included_modules.should_not be_include(AASM::Persistence::ActiveRecordPersistence::ReadState)
+    it "should not include AASM2::Persistence::ActiveRecordPersistence::ReadState" do
+      @klass.included_modules.should_not be_include(AASM2::Persistence::ActiveRecordPersistence::ReadState)
     end
-    it "should include AASM::Persistence::ActiveRecordPersistence::WriteState" do
-      @klass.included_modules.should be_include(AASM::Persistence::ActiveRecordPersistence::WriteState)
+    it "should include AASM2::Persistence::ActiveRecordPersistence::WriteState" do
+      @klass.included_modules.should be_include(AASM2::Persistence::ActiveRecordPersistence::WriteState)
     end
-    it "should include AASM::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence" do
-      @klass.included_modules.should be_include(AASM::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence)
+    it "should include AASM2::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence" do
+      @klass.included_modules.should be_include(AASM2::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence)
     end
   end
 
@@ -106,14 +106,14 @@ begin
       @klass = Fo
     end
     it_should_behave_like "aasm model"
-    it "should include AASM::Persistence::ActiveRecordPersistence::ReadState" do
-      @klass.included_modules.should be_include(AASM::Persistence::ActiveRecordPersistence::ReadState)
+    it "should include AASM2::Persistence::ActiveRecordPersistence::ReadState" do
+      @klass.included_modules.should be_include(AASM2::Persistence::ActiveRecordPersistence::ReadState)
     end
-    it "should not include AASM::Persistence::ActiveRecordPersistence::WriteState" do
-      @klass.included_modules.should_not be_include(AASM::Persistence::ActiveRecordPersistence::WriteState)
+    it "should not include AASM2::Persistence::ActiveRecordPersistence::WriteState" do
+      @klass.included_modules.should_not be_include(AASM2::Persistence::ActiveRecordPersistence::WriteState)
     end
-    it "should include AASM::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence" do
-      @klass.included_modules.should be_include(AASM::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence)
+    it "should include AASM2::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence" do
+      @klass.included_modules.should be_include(AASM2::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence)
     end
   end
 
@@ -122,14 +122,14 @@ begin
       @klass = Fum
     end
     it_should_behave_like "aasm model"
-    it "should include AASM::Persistence::ActiveRecordPersistence::ReadState" do
-      @klass.included_modules.should be_include(AASM::Persistence::ActiveRecordPersistence::ReadState)
+    it "should include AASM2::Persistence::ActiveRecordPersistence::ReadState" do
+      @klass.included_modules.should be_include(AASM2::Persistence::ActiveRecordPersistence::ReadState)
     end
-    it "should include AASM::Persistence::ActiveRecordPersistence::WriteState" do
-      @klass.included_modules.should be_include(AASM::Persistence::ActiveRecordPersistence::WriteState)
+    it "should include AASM2::Persistence::ActiveRecordPersistence::WriteState" do
+      @klass.included_modules.should be_include(AASM2::Persistence::ActiveRecordPersistence::WriteState)
     end
-    it "should not include AASM::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence" do
-      @klass.included_modules.should_not be_include(AASM::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence)
+    it "should not include AASM2::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence" do
+      @klass.included_modules.should_not be_include(AASM2::Persistence::ActiveRecordPersistence::WriteStateWithoutPersistence)
     end
   end
 
@@ -209,9 +209,9 @@ begin
     end
   end
 
-  describe AASM::Persistence::ActiveRecordPersistence::NamedScopeMethods do
+  describe AASM2::Persistence::ActiveRecordPersistence::NamedScopeMethods do
     class NamedScopeExample < ActiveRecord::Base
-      include AASM
+      include AASM2
     end
 
     context "Does not already respond_to? the scope name" do
