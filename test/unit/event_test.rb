@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EventTest < Test::Unit::TestCase
   def new_event
-    @event = AASM2::SupportingClasses::Event.new(@name, {:success => @success}) do
+    @event = AASMLegacy::SupportingClasses::Event.new(@name, {:success => @success}) do
       transitions :to => :closed, :from => [:open, :received]
     end
   end
@@ -22,25 +22,25 @@ class EventTest < Test::Unit::TestCase
     end
     
     should 'create StateTransitions' do
-      mock(AASM2::SupportingClasses::StateTransition).new({:to => :closed, :from => :open})
-      mock(AASM2::SupportingClasses::StateTransition).new({:to => :closed, :from => :received})
+      mock(AASMLegacy::SupportingClasses::StateTransition).new({:to => :closed, :from => :open})
+      mock(AASMLegacy::SupportingClasses::StateTransition).new({:to => :closed, :from => :received})
       new_event
     end
     
     context 'when firing' do
-      should 'raise an AASM2::InvalidTransition error if the transitions are empty' do
-        event = AASM2::SupportingClasses::Event.new(:event)
+      should 'raise an AASMLegacy::InvalidTransition error if the transitions are empty' do
+        event = AASMLegacy::SupportingClasses::Event.new(:event)
         
         obj = OpenStruct.new
         obj.aasm_current_state = :open
         
-        assert_raise AASM2::InvalidTransition do
+        assert_raise AASMLegacy::InvalidTransition do
           event.fire(obj)
         end
       end
       
       should 'return the state of the first matching transition it finds' do
-        event = AASM2::SupportingClasses::Event.new(:event) do
+        event = AASMLegacy::SupportingClasses::Event.new(:event) do
           transitions :to => :closed, :from => [:open, :received]
         end
 

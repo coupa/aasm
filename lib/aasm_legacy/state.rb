@@ -1,4 +1,4 @@
-class AASM2::SupportingClasses::State
+class AASMLegacy::SupportingClasses::State
   attr_reader :name, :options
 
   def initialize(name, options={})

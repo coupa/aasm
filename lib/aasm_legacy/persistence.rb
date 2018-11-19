@@ -1,4 +1,4 @@
-module AASM2::Persistence
+module AASMLegacy::Persistence
 
   # Checks to see this class or any of it's superclasses inherit from
   # ActiveRecord::Base and if so includes ActiveRecordPersistence
@@ -8,7 +8,7 @@ module AASM2::Persistence
 
     if hierarchy.include?("ActiveRecord::Base")
       require File.join(File.dirname(__FILE__), 'persistence', 'active_record_persistence')
-      base.send(:include, AASM2::Persistence::ActiveRecordPersistence)
+      base.send(:include, AASMLegacy::Persistence::ActiveRecordPersistence)
     end
   end
 end

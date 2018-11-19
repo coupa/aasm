@@ -1,13 +1,13 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 
-describe AASM2::SupportingClasses::Event do
+describe AASMLegacy::SupportingClasses::Event do
   before(:each) do
     @name = :close_order
     @success = :success_callback
   end
 
   def new_event
-    @event = AASM2::SupportingClasses::Event.new(@name, {:success => @success}) do
+    @event = AASMLegacy::SupportingClasses::Event.new(@name, {:success => @success}) do
       transitions :to => :closed, :from => [:open, :received]
     end
   end
@@ -23,23 +23,23 @@ describe AASM2::SupportingClasses::Event do
   end
 
   it 'should create StateTransitions' do
-    AASM2::SupportingClasses::StateTransition.should_receive(:new).with({:to => :closed, :from => :open})
-    AASM2::SupportingClasses::StateTransition.should_receive(:new).with({:to => :closed, :from => :received})
+    AASMLegacy::SupportingClasses::StateTransition.should_receive(:new).with({:to => :closed, :from => :open})
+    AASMLegacy::SupportingClasses::StateTransition.should_receive(:new).with({:to => :closed, :from => :received})
     new_event
   end
 end
 
-describe AASM2::SupportingClasses::Event, 'when firing an event' do
-  it 'should raise an AASM2::InvalidTransition error if the transitions are empty' do
+describe AASMLegacy::SupportingClasses::Event, 'when firing an event' do
+  it 'should raise an AASMLegacy::InvalidTransition error if the transitions are empty' do
     obj = mock('object')
     obj.stub!(:aasm_current_state)
 
-    event = AASM2::SupportingClasses::Event.new(:event)
-    lambda { event.fire(obj) }.should raise_error(AASM2::InvalidTransition)
+    event = AASMLegacy::SupportingClasses::Event.new(:event)
+    lambda { event.fire(obj) }.should raise_error(AASMLegacy::InvalidTransition)
   end
 
   it 'should return the state of the first matching transition it finds' do
-    event = AASM2::SupportingClasses::Event.new(:event) do
+    event = AASMLegacy::SupportingClasses::Event.new(:event) do
       transitions :to => :closed, :from => [:open, :received]
     end
 
@@ -50,9 +50,9 @@ describe AASM2::SupportingClasses::Event, 'when firing an event' do
   end
 end
 
-describe AASM2::SupportingClasses::Event, 'when executing the success callback' do
+describe AASMLegacy::SupportingClasses::Event, 'when executing the success callback' do
   class ThisNameBetterNotBeInUse
-    include AASM2
+    include AASMLegacy
 
     aasm_state :initial
     aasm_state :symbol

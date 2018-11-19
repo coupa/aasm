@@ -1,14 +1,14 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 
 # TODO These are specs ported from original aasm
-describe AASM2::SupportingClasses::State do
+describe AASMLegacy::SupportingClasses::State do
   before(:each) do
     @name    = :astate
     @options = { :crazy_custom_key => 'key' }
   end
 
   def new_state(options={})
-    AASM2::SupportingClasses::State.new(@name, @options.merge(options))
+    AASMLegacy::SupportingClasses::State.new(@name, @options.merge(options))
   end
 
   it 'should set the name' do

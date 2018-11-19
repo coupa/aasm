@@ -4,13 +4,13 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{aasm2}
+  s.name = %q{aasm_legacy}
   s.version = "2.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Scott Barron", "Scott Petersen", "Travis Tilley"]
   s.date = %q{2010-09-13}
-  s.description = %q{AASM2 is a continuation of the acts as state machine rails plugin, built for plain Ruby objects.}
+  s.description = %q{AASM_LEGACY is a continuation of the acts as state machine rails plugin, built for plain Ruby objects.}
   s.email = %q{scott@elitists.net, ttilley@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -23,20 +23,20 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "aasm2.gemspec",
-     "lib/aasm2.rb",
-     "lib/aasm2/aasm2.rb",
-     "lib/aasm2/event.rb",
-     "lib/aasm2/persistence.rb",
-     "lib/aasm2/persistence/active_record_persistence.rb",
-     "lib/aasm2/state.rb",
-     "lib/aasm2/state_machine.rb",
-     "lib/aasm2/state_transition.rb",
-     "lib/aasm2/supporting_classes.rb",
+     "aasm_legacy.gemspec",
+     "lib/aasm_legacy.rb",
+     "lib/aasm_legacy/aasm_legacy.rb",
+     "lib/aasm_legacy/event.rb",
+     "lib/aasm_legacy/persistence.rb",
+     "lib/aasm_legacy/persistence/active_record_persistence.rb",
+     "lib/aasm_legacy/state.rb",
+     "lib/aasm_legacy/state_machine.rb",
+     "lib/aasm_legacy/state_transition.rb",
+     "lib/aasm_legacy/supporting_classes.rb",
      "spec/functional/conversation.rb",
      "spec/functional/conversation_spec.rb",
      "spec/spec_helper.rb",
-     "spec/unit/aasm2_spec.rb",
+     "spec/unit/aasm_legacy_spec.rb",
      "spec/unit/active_record_persistence_spec.rb",
      "spec/unit/before_after_callbacks_spec.rb",
      "spec/unit/event_spec.rb",
@@ -58,7 +58,7 @@ Gem::Specification.new do |s|
     "spec/functional/conversation.rb",
      "spec/functional/conversation_spec.rb",
      "spec/spec_helper.rb",
-     "spec/unit/aasm2_spec.rb",
+     "spec/unit/aasm_legacy_spec.rb",
      "spec/unit/active_record_persistence_spec.rb",
      "spec/unit/before_after_callbacks_spec.rb",
      "spec/unit/event_spec.rb",
@@ -66,7 +66,7 @@ Gem::Specification.new do |s|
      "spec/unit/state_transition_spec.rb",
      "test/functional/auth_machine_test.rb",
      "test/test_helper.rb",
-     "test/unit/aasm2_test.rb",
+     "test/unit/aasm_legacy_test.rb",
      "test/unit/event_test.rb",
      "test/unit/state_test.rb",
      "test/unit/state_transition_test.rb"

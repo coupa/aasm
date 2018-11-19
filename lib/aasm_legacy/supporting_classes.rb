@@ -1,4 +1,4 @@
-module AASM2::SupportingClasses
+module AASMLegacy::SupportingClasses
 end
 
 require File.join(File.dirname(__FILE__), 'state_transition')

@@ -1,7 +1,7 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 
 class Foo2
-  include AASM2
+  include AASMLegacy
   aasm_initial_state :open
   aasm_state :open,
     :before_enter => :before_enter_open,
